@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HearthBudget — Household Budget Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">◈</span> HearthBudget</div>
+  <div class="month-nav">
+    <button id="prev-month" aria-label="Previous month">‹</button>
+    <span id="month-label"></span>
+    <button id="next-month" aria-label="Next month">›</button>
+  </div>
+</header>
+
+<main>
+  <section class="summary">
+    <div class="card income"><span class="card-label">Income</span><span class="card-value" id="sum-income">–</span></div>
+    <div class="card expense"><span class="card-label">Expenses</span><span class="card-value" id="sum-expense">–</span></div>
+    <div class="card balance"><span class="card-label">Balance</span><span class="card-value" id="sum-balance">–</span></div>
+    <div class="card rate"><span class="card-label">Savings rate</span><span class="card-value" id="sum-rate">–</span></div>
+  </section>
+
+  <section class="grid">
+    <div class="panel chart-panel">
+      <h2>Spending by category</h2>
+      <div class="chart-wrap">
+        <canvas id="donut" width="260" height="260"></canvas>
+        <ul id="legend" class="legend"></ul>
+      </div>
+    </div>
+
+    <div class="panel budgets-panel">
+      <h2>Monthly budgets</h2>
+      <div id="budgets"></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Transactions</h2>
+      <button id="add-btn" class="primary">+ Add transaction</button>
+    </div>
+    <form id="tx-form" class="tx-form hidden">
+      <input type="text" id="f-desc" placeholder="Description" required>
+      <input type="number" id="f-amount" placeholder="Amount" min="0" step="0.01" required>
+      <select id="f-type">
+        <option value="expense">Expense</option>
+        <option value="income">Income</option>
+      </select>
+      <select id="f-category"></select>
+      <input type="date" id="f-date" required>
+      <button type="submit" class="primary">Save</button>
+      <button type="button" id="f-cancel">Cancel</button>
+    </form>
+    <table class="tx-table">
+      <thead><tr><th>Date</th><th>Description</th><th>Category</th><th class="num">Amount</th><th></th></tr></thead>
+      <tbody id="tx-body"></tbody>
+    </table>
+    <p id="tx-empty" class="empty hidden">No transactions this month yet. Add your first one above.</p>
+  </section>
+
+  <footer class="foot">HearthBudget runs entirely in your browser — your data never leaves this device.</footer>
+</main>
+
+<script src="main.js"></script>
+</body>
+</html>

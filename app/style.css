@@ -1,0 +1,67 @@
+:root{
+  --bg:#f4f6f8; --panel:#ffffff; --ink:#1c2733; --muted:#6b7a89;
+  --line:#e3e9ef; --accent:#0f766e; --accent-soft:#e6f4f1;
+  --income:#15803d; --expense:#dc2626; --warn:#d97706;
+  --radius:14px; --shadow:0 1px 3px rgba(16,24,40,.06),0 4px 14px rgba(16,24,40,.05);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.brand{font-weight:700;font-size:20px;letter-spacing:.2px}
+.brand-mark{color:var(--accent)}
+.month-nav{display:flex;align-items:center;gap:10px;font-weight:600}
+.month-nav button{width:32px;height:32px;border:1px solid var(--line);background:#fff;border-radius:8px;font-size:18px;cursor:pointer}
+.month-nav button:hover{background:var(--accent-soft)}
+main{max-width:1060px;margin:0 auto;padding:22px 16px 40px}
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+.card-label{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.card-value{font-size:24px;font-weight:700}
+.card.income .card-value{color:var(--income)}
+.card.expense .card-value{color:var(--expense)}
+.card.balance .card-value{color:var(--accent)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.panel h2{margin:0 0 14px;font-size:16px}
+.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.panel-head h2{margin:0}
+.chart-wrap{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.legend{list-style:none;margin:0;padding:0;font-size:13px;color:var(--muted)}
+.legend li{display:flex;align-items:center;gap:8px;margin:5px 0}
+.legend .dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+.legend b{color:var(--ink)}
+.budget-row{margin-bottom:14px}
+.budget-row .row-top{display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px}
+.budget-row .row-top b{font-size:14px}
+.bar{height:9px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar > div{height:100%;background:var(--accent);border-radius:99px}
+.bar > div.over{background:var(--expense)}
+.bar > div.near{background:var(--warn)}
+button{font:inherit;cursor:pointer}
+button.primary{background:var(--accent);color:#fff;border:none;padding:9px 16px;border-radius:9px;font-weight:600}
+button.primary:hover{filter:brightness(1.08)}
+.tx-form{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;padding:12px;background:var(--accent-soft);border-radius:10px}
+.tx-form input,.tx-form select{padding:8px 10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff}
+.tx-form input[type=text]{flex:2;min-width:140px}
+.tx-form input[type=number]{flex:1;min-width:100px}
+.tx-form button{padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:#fff}
+.tx-table{width:100%;border-collapse:collapse;font-size:14px}
+.tx-table th{text-align:left;color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.06em;padding:8px 6px;border-bottom:1px solid var(--line)}
+.tx-table td{padding:9px 6px;border-bottom:1px solid var(--line)}
+.tx-table .num{text-align:right;font-variant-numeric:tabular-nums}
+.tx-table th.num{text-align:right}
+.tx-table .pos{color:var(--income);font-weight:600}
+.tx-table .neg{color:var(--expense);font-weight:600}
+.tx-table .del{border:none;background:none;color:var(--muted);font-size:16px;padding:2px 6px}
+.tx-table .del:hover{color:var(--expense)}
+.chip{display:inline-block;padding:2px 9px;border-radius:99px;font-size:12px;background:var(--accent-soft);color:var(--accent)}
+.empty{color:var(--muted);text-align:center;padding:18px 0 6px}
+.hidden{display:none!important}
+.foot{color:var(--muted);font-size:12px;text-align:center;margin-top:22px}
+@media (max-width:760px){
+  .summary{grid-template-columns:1fr 1fr}
+  .grid{grid-template-columns:1fr}
+  .card-value{font-size:20px}
+  .chart-wrap{justify-content:center}
+  .tx-table th:nth-child(3),.tx-table td:nth-child(3){display:none}
+}
