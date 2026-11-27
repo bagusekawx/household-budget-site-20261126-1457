@@ -54,6 +54,7 @@ button.primary:hover{filter:brightness(1.08)}
 .tx-table .neg{color:var(--expense);font-weight:600}
 .tx-table .del{border:none;background:none;color:var(--muted);font-size:16px;padding:2px 6px}
 .tx-table .del:hover{color:var(--expense)}
+.tx-table .total-row td{font-weight:700;background:var(--accent-soft);border-bottom:none}
 .chip{display:inline-block;padding:2px 9px;border-radius:99px;font-size:12px;background:var(--accent-soft);color:var(--accent)}
 .empty{color:var(--muted);text-align:center;padding:18px 0 6px}
 .hidden{display:none!important}

@@ -103,7 +103,7 @@ function renderBudgets(byCat) {
 
 function renderTable(list) {
   $("tx-empty").classList.toggle("hidden", list.length > 0);
-  $("tx-body").innerHTML = list.map(t => `
+  const rows = list.map(t => `
     <tr>
       <td>${t.date}</td>
       <td>${escapeHtml(t.desc)}</td>
@@ -111,6 +111,15 @@ function renderTable(list) {
       <td class="num ${t.type === "income" ? "pos" : "neg"}">${t.type === "income" ? "+" : "−"}${fmt(t.amount)}</td>
       <td><button class="del" data-id="${t.id}" title="Delete">×</button></td>
     </tr>`).join("");
+  // A running total row closes the table so the month reads at a glance.
+  const net = list.reduce((s, t) => s + (t.type === "income" ? t.amount : -t.amount), 0);
+  const totalRow = list.length ? `
+    <tr class="total-row">
+      <td colspan="3">Net for the month</td>
+      <td class="num ${net >= 0 ? "pos" : "neg"}">${net >= 0 ? "+" : "−"}${fmt(Math.abs(net))}</td>
+      <td></td>
+    </tr>` : "";
+  $("tx-body").innerHTML = rows + totalRow;
   document.querySelectorAll(".del").forEach(b => b.addEventListener("click", () => {
     txs = txs.filter(t => t.id !== Number(b.dataset.id)); save(); render();
   }));
